@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creamy Delights</title>
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+  <h2 class="logo">🍨 Creamy Delights</h2>
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <div class="nav-links" id="navLinks">
+    <a href="#">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <img src="images/logo.png" alt="Logo">
+  <p class="tagline">आपकी पार्टी, हमारी ज़िम्मेदारी</p>
+</div>
+
+<!-- Slider -->
+<div class="slider">
+  <img src="images/slide1.jpg" class="slide active">
+  <img src="images/slide2.jpg" class="slide">
+  <img src="images/slide3.jpg" class="slide">
+</div>
+
+<!-- Menu -->
+<h2 id="menu">🍨 Our Menu</h2>
+
+<div class="menu-grid">
+
+  <div class="menu-item">
+    <img src="images/vanilla.jpg">
+    <p class="name">Vanilla</p>
+    <p class="price">₹340</p>
+  </div>
+
+  <div class="menu-item">
+    <img src="images/chocolate.jpg">
+    <p class="name">Chocolate</p>
+    <p class="price">₹450</p>
+  </div>
+
+  <div class="menu-item">
+    <img src="images/strawberry.jpg">
+    <p class="name">Strawberry</p>
+    <p class="price">₹340</p>
+  </div>
+
+</div>
+
+<!-- Contact -->
+<div class="contact" id="contact">
+  <h2>📞 Contact Us</h2>
+  <p>📍 Lucknow, Uttar Pradesh</p>
+  <p>📱 9519754642</p>
+  <p>✉️ creamydelights420@gmail.com</p>
+
+  <form class="contact-form">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea placeholder="Message"></textarea>
+    <button type="submit">Send</button>
+  </form>
+</div>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/919519754642" target="_blank" class="whatsapp"><img width="40px" height="40px" src="images/whatsapp.png" alt="WhatsApp"></a>
+
+<script src="js/script.js"></script>
+</body>
+</html>

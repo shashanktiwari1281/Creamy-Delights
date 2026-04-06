@@ -1,0 +1,166 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: black;
+  color: white;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #111;
+  position: relative;
+}
+
+/* Hide burger on desktop */
+.menu-toggle {
+  font-size: 26px;
+  cursor: pointer;
+  display: none;
+}
+
+/* Normal menu */
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+
+/* 🔥 MOBILE FIX */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block; /* show burger */
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #111;
+    position: absolute;
+    top: 80px;
+    padding: 10px 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links a {
+    padding: 4px;
+    border-top: 1px solid #222;
+  }
+
+  .nav-links.active {
+    display: flex; /* show when clicked */
+  }
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 40px;
+}
+.hero img {
+  width: 200px;
+}
+.tagline {
+  font-size: 22px;
+  color: #ff69b4;
+}
+
+/* Slider */
+.slider {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+.slide {
+  width: 100%;
+  height: 300px;
+  position: absolute;
+  opacity: 0;
+  object-fit: cover;
+  transition: 1s;
+}
+.slide.active {
+  opacity: 1;
+}
+
+/* Menu */
+h2 {
+  text-align: center;
+  color: #00bfff;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.menu-item {
+  background: #111;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  transition: 0.3s;
+}
+.menu-item:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 15px #ff69b4;
+}
+.menu-item img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+.name {
+  color: #ff69b4;
+}
+.price {
+  color: #00bfff;
+}
+
+/* Contact */
+.contact {
+  text-align: center;
+  padding: 40px;
+}
+
+.contact-form {
+  max-width: 400px;
+  margin: auto;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: none;
+}
+.contact-form button {
+  background: #ff69b4;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+/* WhatsApp */
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+}
