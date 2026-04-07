@@ -99,6 +99,10 @@ h2 {
   color: #00bfff;
 }
 
+#menu{
+  margin-top: 100px;
+}
+
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
