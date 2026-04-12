@@ -1,203 +1,979 @@
 <!DOCTYPE html>
 <html lang="hi">
+
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Creamy Delights</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
   <style>
-    body {
-      background-color: #000;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box
     }
-    .logo-container {
-      margin-top: 50px;
+
+    :root {
+      --cream: #FFF8F0;
+      --blush: #FDECD8;
+      --rose: #E8735A;
+      --deep: #1A0A00;
+      --gold: #C97B3F;
+      --soft: #F5E6D3;
+      --muted: #8B6347;
+      --white: #FFFDF9;
     }
-    .logo-image {
-      width: 300px;
-      height: auto;
+
+    html {
+      scroll-behavior: smooth
     }
-    .tagline {
-      margin-top: 20px;
-      font-size: 24px;
-      font-weight: 500;
-      color: white;
-    }
-  </style>
-</head>
-<body>
-  <div class="logo-container">
-    <img src="C:\Users\ak588\OneDrive\Pictures\l.png" alt="Creamy Delights Logo" class="logo-image">
-    <div class="tagline"><a href="home.html">आपकी पार्टी, हमारी ज़िम्मेदारी</a></div>
-  </div>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-  <meta charset="UTF-8">
-  <title>Creamy Delights Menu</title>
-  <style>
+
     body {
-      background-color: #000;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 20px;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--deep);
+      overflow-x: hidden
     }
-    h1 {
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 5%;
+      background: rgba(255, 248, 240, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 123, 63, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      transition: .3s
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--rose);
+      letter-spacing: -0.5px
+    }
+
+    .nav-logo span {
+      color: var(--gold)
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 500;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      transition: .2s;
+      position: relative
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--rose);
+      transition: .3s
+    }
+
+    .nav-links a:hover::after {
+      width: 100%
+    }
+
+    .nav-links a:hover {
+      color: var(--rose)
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px
+    }
+
+    .burger .menu-toggle {
+      font-size: 24px;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 120vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, var(--cream) 0%, var(--blush) 50%, #FDD9B5 100%)
+    }
+
+    .logo-img {
+      height: 180px;
+      width: 180px;
+    }
+
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: .5;
+      pointer-events: none
+    }
+
+    .blob1 {
+      width: 500px;
+      height: 500px;
+      background: #FECBA1;
+      top: -100px;
+      right: -100px
+    }
+
+    .blob2 {
+      width: 350px;
+      height: 350px;
+      background: #F9C5A0;
+      bottom: -50px;
+      left: -80px
+    }
+
+    .hero-content {
       text-align: center;
-      font-size: 36px;
-      margin-bottom: 30px;
+      position: relative;
+      top: 50px;
+      z-index: 2;
+      padding: 2rem
     }
+
+    .menu-img {
+      height: 180px;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(232, 115, 90, .12);
+      border: 1px solid rgba(232, 115, 90, .3);
+      color: var(--rose);
+      font-size: .75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: .5rem 1.5rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--deep);
+      margin-bottom: 1rem
+    }
+
+    .hero h1 em {
+      color: var(--rose);
+      font-style: italic
+    }
+
+    .hero-tagline {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      letter-spacing: .3px
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      background: var(--rose);
+      color: #fff;
+      padding: .9rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: .95rem;
+      transition: .3s;
+      box-shadow: 0 8px 30px rgba(232, 115, 90, .35)
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(232, 115, 90, .45)
+    }
+
+    .hero-cta .arrow {
+      transition: .3s
+    }
+
+    .hero-cta:hover .arrow {
+      transform: translateX(4px)
+    }
+
+    .hero-icon {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      display: block
+    }
+
+    /* SCROLL MARQUEE */
+    .marquee-wrap {
+      background: var(--rose);
+      padding: 14px 0;
+      overflow: hidden;
+      white-space: nowrap
+    }
+
+    .marquee-track {
+      display: inline-block;
+      animation: marquee 20s linear infinite
+    }
+
+    .marquee-track span {
+      color: #fff;
+      font-size: .85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 0 2rem;
+      opacity: .9
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(0)
+      }
+
+      100% {
+        transform: translateX(-50%)
+      }
+    }
+
+    /* SECTION HEADERS */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 0 1rem
+    }
+
+    .section-label {
+      font-size: .75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rose);
+      font-weight: 500;
+      margin-bottom: .75rem;
+      display: block
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--deep);
+      line-height: 1.15
+    }
+
+    /* MENU */
+    .menu-section {
+      padding: 6rem 5%;
+      background: var(--white)
+    }
+
+    .price-filter {
+      display: flex;
+      gap: .75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem
+    }
+
+    .filter-btn {
+      padding: .5rem 1.5rem;
+      border-radius: 50px;
+      border: 1.5px solid var(--soft);
+      background: transparent;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .85rem;
+      color: var(--muted);
+      transition: .25s;
+      font-weight: 500
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--rose);
+      border-color: var(--rose);
+      color: #fff
+    }
+
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      padding: 0 20px;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem
     }
-    .menu-item {
-      background-color: #111;
-      border: 2px solid #ff69b4;
-      border-radius: 10px;
-      padding: 15px;
-      text-align: center;
-    }
-    .menu-item img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-    .menu-item .name {
-      color: #00bfff;
-      font-weight: bold;
-      font-size: 18px;
-    }
-    .menu-item .price {
-      color: #fff;
-      font-size: 16px;
-    }
-  </style>
-</head>
-<body>
-  <h1>🍨 Creamy Delights Menu</h1>
-  <div class="menu-grid">
-    <div class="menu-item"><img src="images\OIP.jpg" alt="Vanilla"><p class="name">Vanilla</p><p class="price">₹340</p></div>
-    <div class="menu-item"><img src="images\WhatsApp Image 2026-02-15 at 8.20.53 PM.jpeg" alt="Black Current"><p class="name">Black Current</p><p class="price">₹570</p></div>
-    <div class="menu-item"><img src="images\OIP (1).jpg" alt="Strawberry"><p class="name">Strawberry</p><p class="price">₹340</p></div>
-    <div class="menu-item"><img src="images\WhatsApp Image 2026-02-15 at 8.25.33 PM.jpeg" alt="Pista Kulfi"><p class="name">Pista Kulfi</p><p class="price">₹570</p></div>
-    <div class="menu-item"><img src="images\mango.jpeg" alt="Mango"><p class="name">Mango</p><p class="price">₹400</p></div>
-    <div class="menu-item"><img src="images\WhatsApp Image 2026-02-15 at 9.10.25 PM.jpeg" alt="Raj Bhogs"><p class="name">Raj Bhogs</p><p class="price">₹570</p></div>
-    <div class="menu-item"><img src="images\WhatsApp Image 2026-02-15 at 10.55.34 PM.jpeg" alt="Pineapple"><p class="name">Pineapple</p><p class="price">₹400</p></div>
-    <div class="menu-item"><img src="images\WhatsApp Image 2026-02-15 at 10.55.35 PM (1).jpeg" alt="American Nut"><p class="name">American Nut</p><p class="price">₹640</p></div>
-    <div class="menu-item"><img src="images\WhatsApp Image 2026-02-15 at 10.18.40 PM.jpeg" alt="Tutty Frutty"><p class="name">Tutty Frutty</p><p class="price">₹400</p></div>
-    <div class="menu-item"><img src="images\WhatsApp Image 2026-02-15 at 10.55.35 PM.jpeg" alt="Butter Scotch"><p class="name">Butter Scotch</p><p class="price">₹430</p></div>
-    <div class="menu-item"><img src="images\WhatsApp Image 2026-02-15 at 10.55.36 PM (2).jpeg" alt="Hazel Nut"><p class="name">Hazel Nut</p><p class="price">₹850</p></div>
-    <div class="menu-item"><img src="images\WhatsApp Image 2026-02-15 at 10.55.36 PM (1).jpeg" alt="Chocolate Almond"><p class="name">Chocolate Almond</p><p class="price">₹450</p></div>
-    <div class="menu-item"><img src="images\WhatsApp Image 2026-02-15 at 10.55.36 PM.jpeg" alt="Choco Brownie"><p class="name">Choco Brownie</p><p class="price">₹850</p></div>
-    <div class="menu-item"><img src="images\OIP (4).jpg" alt="Kaju Kishmish"><p class="name">Kaju Kishmish</p><p class="price">₹450</p></div>
-    <div class="menu-item"><img src="images\WhatsApp Image 2026-02-15 at 10.57.07 PM.jpeg" alt="Bubble Gum"><p class="name">Bubble Gum</p><p class="price">₹850</p></div>
-    <div class="menu-item"><img src="images\WhatsApp Image 2026-02-15 at 10.58.41 PM.jpeg" alt="Chip Chocolate"><p class="name">Chip Chocolate</p><p class="price">₹450</p></div>
-    <div class="menu-item"><img src="images\OIP (5).jpg" alt="Red Velvet"><p class="name">Red Velvet</p><p class="price">₹850</p></div>
-    <div class="menu-item"><img src="images\WhatsApp Image 2026-02-15 at 10.55.37 PM.jpeg" alt="Pista Badam"><p class="name">Pista Badam</p><p class="price">₹450</p></div>
-    <div class="menu-item"><img src="images\1.jpg" alt="Cream n Cookies"><p class="name">Cream n Cookies</p><p class="price">₹850</p></div>
-    <div class="menu-item"><img src="images\OIP (5).jpg" alt="Rajwari Gulab"><p class="name">Rajwari Gulab</p><p class="price">₹450</p></div>
-    <div class="menu-item"><img src="images\belgian-chocolate-dry-fruit-ice-cream-chips-66319816.webp" alt="Belgian Chocolate"><p class="name">Belgian Chocolate</p><p class="price">₹850</p></div>
-    <div class="menu-item"><img src="images\OIP (6).jpg" alt="Ripple Chocolate"><p class="name">Ripple Chocolate</p><p class="price">₹450</p></div>
-    <div class="menu-item"><img src="images\OIP (2).jpg" alt="Mocha Brownie"><p class="name">Mocha Brownie</p><p class="price">₹850</p></div>
-    <div class="menu-item"><img src="images\anjeer-flavoured-cup-ice-cream-500x500.webp" alt="Almond Anjeer"><p class="name">Almond Anjeer</p><p class="price">₹450</p></div>
-    <div class="menu-item"><img src="images\OIP (10).jpg" alt="Rajwadi Delight"><p class="name">Rajwadi Delight</p><p class="price">₹850</p></div>
-    
-    <div class="menu-item"><img src="images\OIP (11).jpg" alt="waterbottle"><p class="name">waterbottle</p><p class="price">₹450</p></div>
-   
 
-  </div>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-  <meta charset="UTF-8">
-  <title>Contact - Creamy Delights</title>
-  <style>
-    body {
-      background-color: #000;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    .contact-section {
-      padding: 50px 20px;
-      text-align: center;
-    }
-    .contact-section h1 {
-      font-size: 36px;
-      margin-bottom: 20px;
-      color: #ff69b4;
-    }
-    .contact-info {
-      margin-bottom: 40px;
-      font-size: 20px;
-    }
-    .contact-info p {
-      margin: 10px 0;
-    }
-    .contact-form {
-      max-width: 600px;
-      margin: 0 auto;
-      background-color: #111;
-      padding: 30px;
-      border-radius: 10px;
-      border: 2px solid #00bfff;
-    }
-    .contact-form input, .contact-form textarea {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 6px;
-    }
-    .contact-form button {
-      background-color: #ff69b4;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 18px;
+    .menu-card {
+      background: var(--cream);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: .35s;
+      border: 1px solid rgba(201, 123, 63, .1);
       cursor: pointer;
+      position: relative
     }
-    .contact-form button:hover {
-      background-color: #00bfff;
+
+    .menu-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(26, 10, 0, .1);
+      border-color: rgba(232, 115, 90, .3)
+    }
+
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      background: linear-gradient(135deg, var(--blush), #FECBA1)
+    }
+
+    .card-img-placeholder {
+      width: 100%;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      background: linear-gradient(135deg, var(--blush), #FECBA1)
+    }
+
+    .card-body {
+      padding: 1.25rem
+    }
+
+    .card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--deep);
+      margin-bottom: .35rem
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: .75rem
+    }
+
+    .card-price {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--rose)
+    }
+
+    .card-tag {
+      font-size: .72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: .25rem .75rem;
+      background: var(--soft);
+      border-radius: 20px
+    }
+
+    .add-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--rose);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.2rem;
+      transition: .2s;
+      flex-shrink: 0
+    }
+
+    .add-btn:hover {
+      background: var(--gold);
+      transform: scale(1.1)
+    }
+
+    /* WHY US */
+    .why-section {
+      padding: 6rem 5%;
+      background: var(--deep);
+      position: relative;
+      overflow: hidden
+    }
+
+    .why-section::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: rgba(232, 115, 90, .08)
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto
+    }
+
+    .why-card {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 20px;
+      transition: .3s
+    }
+
+    .why-card:hover {
+      background: rgba(255, 255, 255, .04);
+      border-color: rgba(232, 115, 90, .3)
+    }
+
+    .why-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.25rem;
+      display: block
+    }
+
+    .why-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: #fff;
+      margin-bottom: .75rem
+    }
+
+    .why-desc {
+      font-size: .9rem;
+      color: rgba(255, 255, 255, .5);
+      line-height: 1.7
+    }
+
+    .why-section .section-label {
+      color: var(--rose)
+    }
+
+    .why-section .section-title {
+      color: #fff
+    }
+
+    /* CONTACT */
+    .contact-section {
+      padding: 6rem 5%;
+      background: var(--blush)
+    }
+
+    .contact-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start
+    }
+
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      color: var(--deep);
+      margin-bottom: 1.5rem
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.25rem
+    }
+
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: rgba(232, 115, 90, .15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0
+    }
+
+    .contact-text {
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.6
+    }
+
+    .contact-text strong {
+      display: block;
+      color: var(--deep);
+      font-weight: 500;
+      margin-bottom: .2rem
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem
+    }
+
+    .form-group label {
+      display: block;
+      font-size: .8rem;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: .5rem
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: .85rem 1.1rem;
+      border: 1.5px solid rgba(201, 123, 63, .2);
+      border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .95rem;
+      background: var(--white);
+      color: var(--deep);
+      outline: none;
+      transition: .2s;
+      resize: vertical
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--rose);
+      box-shadow: 0 0 0 3px rgba(232, 115, 90, .1)
+    }
+
+    .form-group textarea {
+      min-height: 110px
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--rose);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: .3s;
+      letter-spacing: .3px
+    }
+
+    .submit-btn:hover {
+      background: var(--gold);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 25px rgba(201, 123, 63, .35)
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--deep);
+      color: rgba(255, 255, 255, .4);
+      text-align: center;
+      padding: 2rem;
+      font-size: .85rem
+    }
+
+    footer strong {
+      color: rgba(255, 255, 255, .7)
+    }
+
+    /* WHATSAPP FLOAT */
+    .wa-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 200;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 6px 25px rgba(37, 211, 102, .4);
+      transition: .3s
+    }
+
+    .wa-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 35px rgba(37, 211, 102, .5)
+    }
+
+    .wa-float svg {
+      width: 30px;
+      height: 30px;
+      fill: #fff
+    }
+
+    /* MOBILE */
+    @media(max-width:768px) {
+
+      .menu-toggle {
+        display: block;
+        /* show burger */
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #111;
+        position: absolute;
+        top: 80px;
+        padding: 10px 0;
+        right: 0;
+        width: 100%;
+        text-align: center;
+      }
+
+      /* .nav-links a {
+        padding: 4px;
+        border-top: 1px solid #222;
+      } */
+
+      .nav-links.active {
+        display: flex;
+        /* show when clicked */
+      }
+
+      .burger {
+        display: flex
+      }
+
+      .nav-links.open {
+        display: flex;
+        /* show when clicked */
+      }
+
+      .menu-img {
+        height: 160px;
+      }
+
+      .nav-links {
+        display: none;
+        /* flex-direction: column; */
+        background: #fdc18f;
+        position: absolute;
+        top: 70px;
+        padding: 10px 0px;
+        right: 0;
+        width: 100%;
+        text-align: center;
+      }
+
+      .card-tag {
+        display: none;
+      }
+
+      .hero-content {
+        top: 10px;
+      }
+
+      .hero {
+        min-height: 90vh;
+      }
+
+      .nav-links a {
+        padding: auto;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem
+      }
+
+      .contact-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem
+      }
+
+      .logo-img {
+        height: 140px;
+        width: 140px;
+      }
+
+      .menu-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1rem
+      }
+
+      .card-img,
+      .card-img-placeholder {
+        height: 140px
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media(max-width:480px) {
+      .menu-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr
+      }
+
+      nav {
+        padding: 0 4%
+      }
     }
   </style>
 </head>
+
 <body>
-  <section class="contact-section">
-    <h1>📞 Contact Us</h1>
-    <div class="contact-info">
-      <p>📍 Location: Lucknow, Uttar Pradesh</p>
-      <p>📱 Phone: 9519754642</p>
-      <p>✉️ Email: creamydelights420@gmail.com</p>
-      <p>💬 WhatsApp: 9519754642
-      </p>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">🍨 Creamy Delights</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#" onclick="toggleNav()">Home</a>
+      <a href="#menu" onclick="toggleNav()">Menu</a>
+      <a href="#contact" onclick="toggleNav()">Contact</a>
     </div>
-    <div class="contact-form">
-      <form>
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
+    <div class="burger" id="burger" onclick="toggleNav()">
+      <div class="menu-toggle">☰</div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-blob blob1"></div>
+    <div class="hero-blob blob2"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Lucknow's Finest · Since 2025</div>
+      <span class="hero-icon"><img class="logo-img" src="images/logo.png" alt="logo"></span>
+      <h1>Indulge in<br><em>Every Scoop</em></h1>
+      <p class="hero-tagline">आपकी पार्टी, हमारी ज़िम्मेदारी</p>
+      <a href="#menu" class="hero-cta">Explore Our Menu <span class="arrow">→</span></a>
     </div>
   </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>🍦 Vanilla</span><span>🍓 Strawberry</span><span>🥭 Mango</span><span>🍫 Belgian Chocolate</span><span>🌰
+        Hazel Nut</span><span>🍒 Black Current</span><span>🍪 Choco Brownie</span><span>✨ Red Velvet</span>
+      <span>🍦 Vanilla</span><span>🍓 Strawberry</span><span>🥭 Mango</span><span>🍫 Belgian Chocolate</span><span>🌰
+        Hazel Nut</span><span>🍒 Black Current</span><span>🍪 Choco Brownie</span><span>✨ Red Velvet</span>
+    </div>
+  </div>
+
+  <!-- MENU -->
+  <section class="menu-section" id="menu">
+    <div class="section-header">
+      <span class="section-label">Our Flavours</span>
+      <h2 class="section-title">Every Bite Tells a Story</h2>
+    </div>
+    <div class="price-filter">
+      <button class="filter-btn active" onclick="filterMenu('all',this)">All Flavours</button>
+      <button class="filter-btn" onclick="filterMenu('budget',this)">Under ₹450</button>
+      <button class="filter-btn" onclick="filterMenu('premium',this)">Premium</button>
+      <button class="filter-btn" onclick="filterMenu('luxury',this)">Luxury ₹850+</button>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </section>
+
+  <!-- WHY -->
+  <section class="why-section">
+    <div class="section-header">
+      <span class="section-label">Why Choose Us</span>
+      <h2 class="section-title">Crafted with Love</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><span class="why-icon">🧊</span>
+        <div class="why-title">Fresh Daily</div>
+        <p class="why-desc">Every batch is made fresh with premium ingredients and no artificial preservatives.</p>
+      </div>
+      <div class="why-card"><span class="why-icon">🎉</span>
+        <div class="why-title">Party Orders</div>
+        <p class="why-desc">Bulk orders for weddings, birthdays, and corporate events. We deliver the joy.</p>
+      </div>
+      <div class="why-card"><span class="why-icon">🌿</span>
+        <div class="why-title">Natural Flavours</div>
+        <p class="why-desc">Real fruits, real nuts, real happiness. No shortcuts in our recipes.</p>
+      </div>
+      <div class="why-card"><span class="why-icon">🚚</span>
+        <div class="why-title">Fast Delivery</div>
+        <p class="why-desc">Serving all of Lucknow with quick, temperature-controlled delivery.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="section-header">
+      <span class="section-label">Get in Touch</span>
+      <h2 class="section-title">Let's Talk Sweetness</h2>
+    </div>
+    <div class="contact-inner">
+      <div class="contact-info">
+        <h3>We'd love to hear from you</h3>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-text"><strong>Address</strong>Lucknow, Uttar Pradesh</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div class="contact-text"><strong>Phone / WhatsApp</strong>+91 9519754642</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-text"><strong>Email</strong>creamydelights420@gmail.com</div>
+        </div>
+      </div>
+      <div class="contact-form-wrap">
+        <div class="form-group"><label>Your Name</label><input type="text" placeholder="Enter your name"></div>
+        <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@example.com"></div>
+        <div class="form-group"><label>Message</label><textarea
+            placeholder="Tell us about your order or inquiry..."></textarea></div>
+        <button class="submit-btn" onclick="handleSubmit()">Send Message →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Made with 🍨 by <strong>Creamy Delights</strong> · Lucknow, UP · © 2025</p>
+  </footer>
+
+  <!-- WHATSAPP -->
+  <a href="https://wa.me/919519754642" target="_blank" class="wa-float" title="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  </a>
+
+  <script>
+    const menuItems = [
+      { name: 'Vanilla', price: 340, image: 'images/Vanilla.jpg', tag: 'Classic' },
+      { name: 'Black Current', price: 570, image: 'images/BlackCurrent.jpeg', tag: 'Premium' },
+      { name: 'Strawberry', price: 340, image: 'images/Strawberry.jpg', tag: 'Classic' },
+      { name: 'Pista Kulfi', price: 570, image: 'images/Pista Kulfi.jpeg', tag: 'Premium' },
+      { name: 'Mango', price: 400, image: 'images/Mango.jpeg', tag: 'Seasonal' },
+      { name: 'Raj Bhogs', price: 570, image: 'images/Raj Bhogs.jpeg', tag: 'Premium' },
+      { name: 'Pineapple', price: 400, image: 'images/Pineapple.jpeg', tag: 'Seasonal' },
+      { name: 'American Nut', price: 640, image: 'images/American Nut.jpeg', tag: 'Premium' },
+      { name: 'Tutty Frutty', price: 400, image: 'images/Tutty Frutty.jpeg', tag: 'Seasonal' },
+      { name: 'Butter Scotch', price: 430, image: 'images/Butter Scotch.jpeg', tag: 'Classic' },
+      { name: 'Hazel Nut', price: 850, image: 'images/Hazel Nut.jpeg', tag: 'Luxury' },
+      { name: 'Chocolate Almond', price: 450, image: 'images/Chocolate Almond.jpeg', tag: 'Classic' },
+      { name: 'Choco Brownie', price: 850, image: 'images/Choco Brownie.jpeg', tag: 'Luxury' },
+      { name: 'Kaju Kishmish', price: 450, image: 'images/Kaju Kishmish.jpg', tag: 'Classic' },
+      { name: 'Bubble Gum', price: 850, image: 'images/Bubble Gum.jpeg', tag: 'Luxury' },
+      { name: 'Chip Chocolate', price: 450, image: 'images/Chip Chocolate.jpeg', tag: 'Classic' },
+      { name: 'Red Velvet', price: 850, image: 'images/Red Velvet.jpg', tag: 'Luxury' },
+      { name: 'Pista Badam', price: 450, image: 'images/Pista Badam.jpeg', tag: 'Classic' },
+      { name: 'Cream n Cookies', price: 850, image: 'images/Cream n Cookies.jpg', tag: 'Luxury' },
+      { name: 'Rajwari Gulab', price: 450, image: 'images/Rajwari Gulab.jpg', tag: 'Classic' },
+      { name: 'Belgian Chocolate', price: 850, image: 'images/Belgian Chocolate.webp', tag: 'Luxury' },
+      { name: 'Ripple Chocolate', price: 450, image: 'images/Ripple Chocolate.jpg', tag: 'Classic' },
+      { name: 'Mocha Brownie', price: 850, image: 'images/Mocha Brownie.jpg', tag: 'Luxury' },
+      { name: 'Almond Anjeer', price: 450, image: 'images/Almond Anjeer.webp', tag: 'Classic' },
+      { name: 'Rajwadi Delight', price: 850, image: 'images/Rajwadi Delight.jpg', tag: 'Luxury' },
+      { name: 'Water Bottle', price: 450, image: 'images/Water Bottle.jpg', tag: 'Add-on' },
+    ];
+
+    function renderMenu(items) {
+      const g = document.getElementById('menuGrid');
+      g.innerHTML = items.map(i => `
+    <div class="menu-card">
+      <div class="card-img-placeholder"><img class="menu-img" src="${i.image}" alt="${i.name}"></div>
+      <div class="card-body">
+        <div class="card-name">${i.name}</div>
+        <div class="card-footer">
+          <span class="card-price">₹${i.price}</span>
+          <span class="card-tag">${i.tag}</span>
+          <button class="add-btn" title="Add to order" onclick="openWhatsApp('${i.name}')">🛒</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+    }
+
+    function filterMenu(type, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      let filtered = menuItems;
+      if (type === 'budget') filtered = menuItems.filter(i => i.price < 450);
+      else if (type === 'premium') filtered = menuItems.filter(i => i.price >= 450 && i.price < 850);
+      else if (type === 'luxury') filtered = menuItems.filter(i => i.price >= 850);
+      renderMenu(filtered);
+    }
+
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    function handleSubmit() {
+      const btn = document.querySelector('.submit-btn');
+      btn.textContent = 'Message Sent! 🎉'; btn.style.background = '#25D366';
+      setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; }, 3000);
+    }
+
+    renderMenu(menuItems);
+
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      nav.style.boxShadow = window.scrollY > 20 ? '0 4px 30px rgba(26,10,0,.08)' : 'none';
+    });
+
+    function openWhatsApp(name) {
+
+      let message = `Hello, I want ${name} from Creamy Delights. Please let me know the details.`;
+      let phoneNumber = "919519754642";
+
+      let url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+      window.open(url, "_blank");
+      
+    }
+  </script>
 </body>
+
 </html>
-<a href="https://wa.me/9519754642" target="_blank" style="background-color:#25D366; color:white; padding:10px 20px; text-decoration:none; border-radius:5px;">
-   📱 WhatsApp Message
-</a>
