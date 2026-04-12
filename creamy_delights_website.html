@@ -951,9 +951,65 @@
     }
 
     function handleSubmit() {
+      const name = document.querySelector('input[type="text"]');
+      const email = document.querySelector('input[type="email"]');
+      const message = document.querySelector('textarea');
       const btn = document.querySelector('.submit-btn');
-      btn.textContent = 'Message Sent! 🎉'; btn.style.background = '#25D366';
-      setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; }, 3000);
+
+      let isValid = true;
+
+      // Reset previous errors
+      document.querySelectorAll(".error").forEach(el => el.remove());
+
+      // Name validation
+      if (name.value.trim() === "") {
+        showError(name, "Name is required");
+        isValid = false;
+      }
+
+      // Email validation
+      if (email.value.trim() === "") {
+        showError(email, "Email is required");
+        isValid = false;
+      }
+
+      // Message validation
+      if (message.value.trim() === "") {
+        showError(message, "Message cannot be empty");
+        isValid = false;
+      }
+
+      // If not valid → stop
+      if (!isValid) return;
+
+      // Success UI
+      btn.textContent = 'Message Sent! 🎉';
+      btn.style.background = '#25D366';
+
+      let fullMessage = `Hello, I am ${name}.\nEmail: ${email.value}\nMessage: ${message.value}`;
+      let phoneNumber = "919519754642";
+
+      let url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(fullMessage)}`;
+
+      window.open(url, "_blank");
+
+      setTimeout(() => {
+        btn.textContent = 'Send Message →';
+        btn.style.background = '';
+      }, 5000);
+    }
+
+
+    // Function to show error
+    function showError(input, message) {
+      const error = document.createElement("div");
+      error.className = "error";
+      error.style.color = "red";
+      error.style.fontSize = "12px";
+      error.style.marginTop = "5px";
+      error.textContent = message;
+
+      input.parentElement.appendChild(error);
     }
 
     renderMenu(menuItems);
@@ -971,7 +1027,6 @@
       let url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
       window.open(url, "_blank");
-      
     }
   </script>
 </body>
